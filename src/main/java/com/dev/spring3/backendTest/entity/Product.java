@@ -1,9 +1,6 @@
 package com.dev.spring3.backendTest.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,8 +15,9 @@ public class Product {
     private Long idProduct ;
     @Setter
     private String nomProduct;
-    @Setter
-    private String categoryProduct;
+
+    @ManyToOne
+    private Category categoryProduct;
     @Setter
     private  Double priceProduct;
     private Date dateCreated;
@@ -28,12 +26,20 @@ public class Product {
         super();
     }
 
-    public Product(String nomProduct, String categoryProduct, Double priceProduct, Date dateCreated) {
+    public Product(String nomProduct, Double priceProduct, Date dateCreated) {
         super();
         this.nomProduct = nomProduct;
-        this.categoryProduct = categoryProduct;
         this.priceProduct = priceProduct;
         this.dateCreated = dateCreated;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "idProduct=" + idProduct +
+                ", nomProduct='" + nomProduct + '\'' +
+                ", priceProduct=" + priceProduct +
+                ", dateCreated=" + dateCreated +
+                '}';
+    }
 }
